@@ -3,7 +3,7 @@ import Colors from "@constants/Colors";
 import { icons } from "@constants/Icons";
 import { Image, View, Text, TouchableOpacity, Dimensions  } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width } = Dimensions.get('window'); 
 
@@ -23,15 +23,20 @@ export const ArticleScreen = () => {
                     <Image source={require('@assets/icons/backArrow.png')} style={{width: 30, height: 30}} />
                 </TouchableOpacity>
                 <Image source={require('@assets/previews/preview4.png')} style={{width: '100%', height: '100%'}}/>
-                <View style={{position: 'absolute', bottom: 10, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingVertical: 15, paddingHorizontal: 20, paddingBottom: 25 }}>
+                <LinearGradient 
+                    colors={[Colors.black, 'transparent']}
+                    start={{x: 0, y: 1.1}}
+                    end={{x: 0, y: 0}}
+                    style={{position: 'absolute',height: 91, bottom: 10, paddingTop: 15, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingVertical: 15, paddingHorizontal: 20, paddingBottom: 25 }}
+                >
                     <Text style={{ color: Colors.white, fontSize: 22, fontWeight: '600' }}>Title of the article</Text>
                     <Text style={{ color: Colors.white, fontSize: 15, fontWeight: '400' }}>Today</Text>
-                </View>
+                </LinearGradient>
             </View>
             <View style={{ backgroundColor: Colors.white, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -25, padding: 20}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View>
-                        <Text>Feb 22, 2023</Text>
+                        <Text style={{ color: Colors.darkGrey }}>Feb 22, 2023</Text>
                     </View>
                     <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
                         <Image source={icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }}/>

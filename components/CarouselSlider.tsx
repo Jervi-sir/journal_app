@@ -2,6 +2,7 @@ import Colors from '@constants/Colors';
 import { useState, useRef } from 'react';
 import { View, StyleSheet, Dimensions, Text, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 100
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
@@ -47,19 +48,23 @@ export const CarouselSlider = () => {
       <View style={{position: 'absolute', bottom: -5 }}>
         <Pagination
           dotsLength={data.length}
+          dot
           activeDotIndex={index}
           carouselRef={isCarousel}
           dotStyle={{
             width: 20,
-            height: 5,
-            borderRadius: 5,
+            height: 10,
+            borderRadius: 8,
             marginHorizontal: 0,
             backgroundColor: 'rgba(255, 255, 255, 0.92)',
           }}
           inactiveDotOpacity={0.4}
           inactiveDotScale={0.6}
-          activeDotStyle={{ backgroundColor: 'red' }}
           tappableDots={true}
+          inactiveDotStyle={{
+            width: 10,
+          }}
+          
         />
       </View>
     </View>
@@ -73,10 +78,22 @@ const CarouselCardItem = ({ item, index }) => {
         source={{ uri: item.imgUrl }}
         style={styles.image}
       />
-      <View style={{position: 'absolute', bottom: 0, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 20}}>
+      <LinearGradient
+          colors={[Colors.black, 'transparent']}
+          start={{x: 0, y: 0.8}}
+          end={{x: 0, y: 0}}
+          style={{
+            position: 'absolute',
+            bottom: 0, 
+            width: '100%',
+            paddingHorizontal: 20,
+            paddingTop: 15,
+            paddingBottom: 20 
+          }}
+        >
         <Text style={[styles.header, {color: Colors.white}]}>{item.title}</Text>
         <Text style={[styles.body, {color: Colors.white}]}>today</Text>
-      </View>
+      </LinearGradient>
     </View>
   )
 }
