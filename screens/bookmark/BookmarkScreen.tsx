@@ -1,8 +1,8 @@
 
 
 export const BookmarkScreen = () => {
-    return (
-        <>
-        </>
-    );
+   return (
+      <>
+      </>
+   );
 }
