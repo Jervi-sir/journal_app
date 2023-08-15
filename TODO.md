@@ -9,7 +9,6 @@ Project Description
 - [ ] profile screen  
 - [ ] saved screen  
 - [ ] explore screen  
-- [ ] home screen  
 
 ### In Progress
 
@@ -17,4 +16,7 @@ Project Description
 ### Done ✓
 
 - [x] menu bottom bar  
+- [x] home screen  
+- [x] show article
+
 

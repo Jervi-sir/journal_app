@@ -15,11 +15,11 @@ export const CardSingle = () => {
                     end={{x: 0.5, y: 0}}
                     style={{flex: 1, marginHorizontal: 20}}
                 >
-                    <Text style={{fontSize: 20, fontWeight: 800, color: 'grey'}}>Title</Text>
+                    <Text style={{fontSize: 20, fontWeight: '800', color: 'grey'}}>Title</Text>
                 </LinearGradient>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20}}>
-                <Text style={{ fontSize: 12, fontWeight: 300, color: 'grey'}}>date</Text>
+                <Text style={{ fontSize: 12, fontWeight: '300', color: 'grey'}}>date</Text>
                 <View style={{flexDirection: 'row'}}>
                     <Image source={ icons.COMMENT } />
                     <Text>1,3k</Text>

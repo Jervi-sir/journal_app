@@ -13,7 +13,7 @@ import { HomeScreen } from './home/HomeScreen';
 import { ExploreScreen } from './explore/ExploreScreen';
 import { BookmarkScreen } from './bookmark/BookmarkScreen';
 import { WriteScreen } from './write/WriteScreen';
-
+import Colors from '@constants/Colors';
 
 const Tabs = AnimatedTabBarNavigator();
 
@@ -44,18 +44,17 @@ const TabMaterialIcons = (props: any) => {
   );
 };
 
-
 export default () => (
   <Tabs.Navigator
     initialRouteName="Home"
     tabBarOptions={{
       activeTintColor: '#ffffff',
       inactiveTintColor: '#878787',
-      activeBackgroundColor: '#22B07E',
+      activeBackgroundColor: Colors.greenMenu,
     }}
     appearance={{
       shadow: true,
-      floating: false,
+      floating: true,
       whenActiveShow: TabElementDisplayOptions.ICON_ONLY,
       dotSize: DotSize.SMALL,
     }}

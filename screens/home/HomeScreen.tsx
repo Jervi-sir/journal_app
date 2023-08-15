@@ -2,29 +2,37 @@ import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { CarouselSlider } from '@components/CarouselSlider';
 import { icons } from '@constants/Icons';
 import { CardHorizental } from '@components/CardHorizental';
+import { StatusBarSpacer } from '@components/StatusBarSpacer';
+import { HeaderMenu } from '@components/HeaderMenu';
+
+
 
 export const HomeScreen = () => {
     return (
         <>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 20}}>
-                <Text>Elwa3y News</Text>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <TouchableOpacity>
-                        <Image source={icons.SEARCH} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={icons.NOTIFICATION} />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View>
-                <CarouselSlider />
-            </View>
-            <View>
-                <Text style={{ fontSize: 20, fontWeight: 600}}>Recommendation</Text>
+            <StatusBarSpacer />
+            <HeaderMenu />
+            <View style={{flex: 1,paddingHorizontal: 20}}>
                 <FlatList
-                    data={[0,1]}
-                    renderItem={CardHorizental}
+                    data={[0,1,2,3]}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) => (
+                        <View style={{marginVertical: 10}}>
+                            <CardHorizental />
+                        </View>
+                    )}
+                    ListHeaderComponent={() => (
+                        <>
+                            <View style={{ paddingTop: 20 }}>
+                                <CarouselSlider />
+                            </View>
+                            <Text style={{ fontSize: 25, fontWeight: '700'}}>Recommendation</Text>
+                        </>
+                    )}
+                    ListFooterComponent={() => (
+                        <View style={{height: 100}}>
+                        </View>
+                    )}
                 />
             </View>
         </>
