@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
-import { CarouselSlider } from '../../components/CarouselSlider';
-import { icons } from '@constants/icons';
+import { CarouselSlider } from '@components/CarouselSlider';
+import { icons } from '@constants/Icons';
 import { CardHorizental } from '@components/CardHorizental';
 
 export const HomeScreen = () => {

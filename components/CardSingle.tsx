@@ -1,4 +1,4 @@
-import { icons } from "@constants/icons";
+import { icons } from "@constants/Icons";
 import { View, Image, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 

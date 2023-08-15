@@ -1,4 +1,4 @@
-import { icons } from "@constants/icons";
+import { icons } from "@constants/Icons";
 import { Image, View, Text, TouchableOpacity,  } from "react-native";
 
 export const ArticleScreen = () => {
