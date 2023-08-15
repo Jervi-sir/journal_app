@@ -10,6 +10,7 @@ import { ArticleScreen } from '@screens/article/ArticleScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  
   return (
     <SafeAreaProvider>
       <NavigationContainer>

@@ -79,7 +79,7 @@ const CarouselCardItem = ({ item, index }) => {
         style={styles.image}
       />
       <LinearGradient
-          colors={[Colors.black, 'transparent']}
+          colors={['#3B3631', 'rgba(59, 54, 49, 0.00)']}
           start={{x: 0, y: 0.8}}
           end={{x: 0, y: 0}}
           style={{
