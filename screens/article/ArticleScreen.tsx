@@ -1,7 +1,7 @@
 import { StatusBarSpacer } from "@components/StatusBarSpacer";
 import Colors from "@constants/Colors";
 import { icons } from "@constants/Icons";
-import { Image, View, Text, TouchableOpacity, Dimensions } from "react-native";
+import { Image, View, Text, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -11,7 +11,7 @@ export const ArticleScreen = () => {
    const navigation = useNavigation();
 
    return (
-      <>
+      <ScrollView>
          <View style={{ width, height: width, position: 'relative' }}>
             <TouchableOpacity
                style={{ position: 'absolute', top: 15, left: 10, zIndex: 99, backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5, transform: [{ rotate: '-90deg' }] }}
@@ -51,12 +51,12 @@ export const ArticleScreen = () => {
                   </TouchableOpacity>
                </View>
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginTop: 20, minHeight: '100%', backgroundColor: 'red' }}>
                <Text>
                   content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
                </Text>
             </View>
          </View>
-      </>
+      </ScrollView>
    );
 }
