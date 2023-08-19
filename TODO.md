@@ -7,8 +7,6 @@ Project Description
 ### Todo
 
 - [ ] profile screen  
-- [ ] saved screen  
-- [ ] explore screen  
 
 ### In Progress
 
@@ -17,6 +15,7 @@ Project Description
 
 - [x] menu bottom bar  
 - [x] home screen  
-- [x] show article
-
+- [x] show article  
+- [x] explore screen  
+- [x] saved screen  
 

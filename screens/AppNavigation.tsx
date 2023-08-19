@@ -1,5 +1,4 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity } from 'react-native';
 import {
    AnimatedTabBarNavigator,
    DotSize,
@@ -46,7 +45,7 @@ const TabMaterialIcons = (props: any) => {
 
 export default () => (
    <Tabs.Navigator
-      initialRouteName="Discover"
+      initialRouteName="Saved"
       tabBarOptions={{
          activeTintColor: '#ffffff',
          inactiveTintColor: '#878787',
@@ -72,7 +71,7 @@ export default () => (
          }}
       />
       <Tabs.Screen
-         name="Discover"
+         name="Explore"
          component={ExploreScreen}
          options={{
             label: 'Explore',
@@ -84,7 +83,7 @@ export default () => (
          }}
       />
       <Tabs.Screen
-         name="Images"
+         name="Saved"
          component={BookmarkScreen}
          options={{
             label: 'Saved',

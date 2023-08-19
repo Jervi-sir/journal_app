@@ -9,65 +9,60 @@ import { FlatList } from 'react-native';
 import LottieView from 'lottie-react-native';
 import arrowDownAnimation from '@assets/lottieFiles/arrowDown.json';
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 const { width } = Dimensions.get('window');
 
 export const ArticleScreen = () => {
    const navigation = useNavigation();
-   const [hideHeader, setHideHeader] = useState(false); 
+   const [hideHeader, setHideHeader] = useState(false);
 
    const [isRefreshing, setIsRefreshing] = useState(false);
 
    const onRefresh = () => {
       setIsRefreshing(true)
-      navigation.goBack(); 
+      navigation.goBack();
    }
-  
+
 
    return (
-      <>
-      { isRefreshing 
-         ? 
-         <View style={{height: 50, width: '100%', position: 'absolute', zIndex: 99, top: 0,left: 0 }}>
-            <LottieView 
-               source={arrowDownAnimation}
-               autoPlay
-               loop
-            />
-         </View>
-         :
-         null
-      }
-         
+      <View style={{ minHeight: '100%', backgroundColor: Colors.white }}>
+         <ActionTools />
          <FlatList
             data={[0]}
-
             progressViewOffset={10}
-
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
                <ArticleDetails />
             )}
-
+            ListFooterComponent={() => (
+               <View style={{ width: '100%', backgroundColor: Colors.white }}>
+                  <Text style={{ textAlign: 'center' }}>Elwa3y</Text>
+                  <View style={{height: 123, }}>
+                  </View>
+               </View>
+            )}
             ListHeaderComponent={() => (
                <View style={{ width, height: width, position: 'relative' }}>
-                  <TouchableOpacity
-                     style={{ position: 'absolute', top: 15, left: 10, zIndex: 99, backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5, transform: [{ rotate: '-90deg' }] }}
-                     onPress={() => {
-                        navigation.goBack();
-                     }}
-                  >
-                     <Image source={require('@assets/icons/backArrow.png')} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
+                  <View style={{ position: 'absolute', top: 15, left: 0, zIndex: 99, flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 20}}>
+                     <TouchableOpacity
+                        style={{  backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5, transform: [{ rotate: '-90deg' }] }}
+                        onPress={() => {
+                           navigation.goBack();
+                        }}
+                     >
+                        <Image source={require('@assets/icons/backArrow.png')} style={{ width: 30, height: 30 }} />
+                     </TouchableOpacity>
+                     <TouchableOpacity
+                        style={{ backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5}}
+                        onPress={() => {}}
+                     >
+                        <Icon name='share' size={ 30 } color={Colors.black} />
+                     </TouchableOpacity>
+                  </View>
+                  
                   <Image source={require('@assets/previews/preview4.png')} style={{ width: '100%', height: '100%' }} />
-                  <LinearGradient
-                     colors={['#3B3631', 'rgba(59, 54, 49, 0.00)']}
-                     start={{ x: 0, y: 1.1 }}
-                     end={{ x: 0, y: 0 }}
-                     style={{ position: 'absolute', height: 91, bottom: 10, paddingTop: 15, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingVertical: 15, paddingHorizontal: 20, paddingBottom: 25 }}
-                  >
-                     <Text style={{ color: Colors.white, fontSize: 22, fontWeight: '600' }}>Title of the article</Text>
-                     <Text style={{ color: Colors.white, fontSize: 15, fontWeight: '400' }}>Today</Text>
-                  </LinearGradient>
                </View>
             )}
             refreshControl={
@@ -77,48 +72,74 @@ export const ArticleScreen = () => {
                   progressBackgroundColor="transparent"
                   tintColor="transparent"
                   titleColor="transparent"
-                     
+
                   onRefresh={onRefresh}
                />
-             }
-       
+            }
+
          />
-      </>
+      </View>
    );
 }
 
 const ArticleDetails = () => {
    return (
-      <View style={{ backgroundColor: Colors.white, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -25, padding: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-               <View>
-                  <Text style={{ color: Colors.darkGrey }}>Feb 22, 2023</Text>
-               </View>
-               <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image source={icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
-                  <Text >1.3k</Text>
-               </TouchableOpacity>
-               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity style={{ marginRight: 10 }}>
-                     <Image source={icons.ARROWUP} style={{ width: 20, height: 20, }} />
-                  </TouchableOpacity>
-                  <Text style={{ marginRight: 10 }}>1.3k</Text>
-                  <TouchableOpacity>
-                     <Image source={icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
-                  </TouchableOpacity>
-               </View>
+      <View style={{ backgroundColor: Colors.white, flex: 1, marginTop: -25, padding: 20 }}>
+         <View>
+            <Text style={{ color: Colors.black, fontSize: 22, fontWeight: '600' }}>Title of the article</Text>
+            <Text style={{ color: Colors.black, fontSize: 15, fontWeight: '400' }}>Category</Text>
+         </View>
+         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10 }}>
+            <View>
+               <Text style={{ color: Colors.darkGrey }}>15min read</Text>
             </View>
-            <View style={{ marginTop: 20, minHeight: '100%', backgroundColor: 'red' }}>
-               <Text>
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-                  content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               </Text>
+            <View>
+               <Text style={{ color: Colors.darkGrey }}>13 hours ago</Text>
             </View>
          </View>
+         <View style={{ flex: 1 }}>
+            <Text>
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+            </Text>
+         </View>
+      </View>
+   );
+}
+
+const ActionTools = () => {
+   return (
+      <View style={{
+         position: 'absolute', bottom: 50, width: '100%', zIndex: 99,
+         justifyContent: 'center', alignItems: 'center',
+      }}>
+         <View style={{
+            flexDirection: 'row', justifyContent: 'space-between', 
+            paddingHorizontal: 20, paddingVertical: 10, width: '80%',
+            backgroundColor: Colors.white,
+            borderRadius: 100
+         }}
+         >
+            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <Icon name="heart" size={25} color={Colors.black} />
+               <Text >1.3k</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <Icon name="comment" size={25} color={Colors.black} />
+               <Text >1.3k</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <Icon name="headphones" size={25} color={Colors.black} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <Icon name="bookmark-outline" size={25} color={Colors.black} />
+            </TouchableOpacity>
+         </View>
+      </View>
+
    );
 }
