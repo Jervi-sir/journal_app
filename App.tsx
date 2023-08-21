@@ -8,6 +8,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ArticleScreen } from '@screens/article/ArticleScreen';
 import { StatusBarSpacer } from '@components/StatusBarSpacer';
 import { Routes } from '@constants/Routes';
+import { LoginScreen } from '@screens/auth/LoginScreen';
+import { RegisterScreen } from '@screens/auth/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +20,7 @@ export default function App() {
 			<StatusBarSpacer />
 			<NavigationContainer>
 				<Stack.Navigator
+					initialRouteName={Routes.Login}
 					screenOptions={{
 						headerShown: false,
 						gestureDirection: 'vertical'
@@ -30,6 +33,14 @@ export default function App() {
 					<Stack.Screen
 						name={Routes.Article}
 						component={ArticleScreen}
+					/>
+					<Stack.Screen
+						name={Routes.Login}
+						component={LoginScreen}
+					/>
+					<Stack.Screen
+						name={Routes.Register}
+						component={RegisterScreen}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>

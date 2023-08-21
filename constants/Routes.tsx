@@ -10,6 +10,6 @@ export const Routes = {
   Notifications: "Notifications",
   About: "About",
   Terms: "Terms",
-
-  
+  Register: "Register",
+  Login: "Login",
 }

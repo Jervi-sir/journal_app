@@ -15,12 +15,11 @@ export const SettingsNaviation = () => {
       initialRouteName={Routes.M4List}
       screenOptions={{ 
         headerShown: false,
-        
+        cardOverlayEnabled: true,
       }}
       detachInactiveScreens={true}
-      
-      
-   >
+
+    >
       <Stack.Screen name={Routes.M4List} component={SettingScreen} />
       <Stack.Screen name={Routes.SettingList} component={SettingList} />
       <Stack.Screen name={Routes.Notifications} component={NotificationScreen} />

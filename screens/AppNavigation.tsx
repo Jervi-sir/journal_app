@@ -7,6 +7,7 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import styled from 'styled-components/native';
 
+import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HomeScreen } from './home/HomeScreen';
 import { ExploreScreen } from './explore/ExploreScreen';
@@ -19,15 +20,25 @@ import { SettingsNaviation } from './settings/SettingsNavigation';
 const Tabs = AnimatedTabBarNavigator();
 
 const Screen = styled.View`
-flex: 1;
-justify-content: center;
-align-items: center;
-background-color: #f2f2f2;
+   flex: 1;
+   justify-content: center;
+   align-items: center;
+   background-color: #f2f2f2;
 `;
 
 const TabBarIcon = (props: any) => {
    return (
       <Icon
+         name={props.name}
+         size={props.size ? props.size : 24}
+         color={props.tintColor}
+      />
+   );
+};
+
+const OcticonsIcons = (props: any) => {
+   return (
+      <Octicons
          name={props.name}
          size={props.size ? props.size : 24}
          color={props.tintColor}
@@ -52,6 +63,7 @@ export default () => (
          activeTintColor: '#ffffff',
          inactiveTintColor: '#878787',
          activeBackgroundColor: Colors.greenMenu,
+         
       }}
       appearance={{
          shadow: true,
@@ -103,7 +115,7 @@ export default () => (
             label: 'Settings',
             tabBarIcon: ({ focused, color }) => (
                <>
-                  <TabBarIcon focused={focused} tintColor={color} name="user" />
+                  <OcticonsIcons focused={focused} tintColor={color} name="gear" />
                </>
             ),
          }}
