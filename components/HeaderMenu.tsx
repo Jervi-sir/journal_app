@@ -1,6 +1,6 @@
 import SearchIcon from '@assets/svg/SearchIcon'
 import Colors from '@constants/Colors'
-import { icons } from '@constants/Icons'
+import { Icons } from '@constants/Icons'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 export const HeaderMenu = () => {
@@ -13,10 +13,10 @@ export const HeaderMenu = () => {
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                <TouchableOpacity style={{ backgroundColor: Colors.lightGrey, borderRadius: 100, padding: 7, marginRight: 15 }}>
-                  <Image source={icons.SEARCH} style={{ width: 20, height: 20 }} />
+                  <Image source={Icons.SEARCH} style={{ width: 20, height: 20 }} />
                </TouchableOpacity>
                <TouchableOpacity style={{ backgroundColor: Colors.lightGrey, borderRadius: 100, padding: 7 }}>
-                  <Image source={icons.NOTIFICATION} style={{ width: 20, height: 20 }} />
+                  <Image source={Icons.NOTIFICATION} style={{ width: 20, height: 20 }} />
                </TouchableOpacity>
             </View>
          </View>

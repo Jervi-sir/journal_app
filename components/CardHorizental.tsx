@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Routes } from '@constants/Routes';
 
 export const CardHorizental = () => {
    const navigation = useNavigation();
@@ -8,7 +9,7 @@ export const CardHorizental = () => {
       <TouchableOpacity
          style={{ flexDirection: 'row', }}
          onPress={() => {
-            navigation.navigate('Article');
+            navigation.navigate(Routes.Article);
          }}
       >
          <Image source={require('@assets/previews/preview2.png')} style={{ marginRight: 10 }} />

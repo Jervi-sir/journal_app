@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ArticleScreen } from '@screens/article/ArticleScreen';
 import { StatusBarSpacer } from '@components/StatusBarSpacer';
+import { Routes } from '@constants/Routes';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,11 +24,11 @@ export default function App() {
 					}}
 				>
 					<Stack.Screen
-						name="App"
+						name={Routes.App}
 						component={AppNavigation}
 					/>
 					<Stack.Screen
-						name="Article"
+						name={Routes.Article}
 						component={ArticleScreen}
 					/>
 				</Stack.Navigator>

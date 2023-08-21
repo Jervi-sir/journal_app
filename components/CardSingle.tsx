@@ -1,4 +1,4 @@
-import { icons } from "@constants/Icons";
+import { Icons } from "@constants/Icons";
 import { View, Image, Text, TouchableOpacity, Dimensions, Animated } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from "@constants/Colors";
@@ -18,7 +18,7 @@ export const CardSingle = () => {
          duration: 500,
          useNativeDriver: true,
       }).start(() => {
-         navigation.navigate('Article');
+         navigation.navigate(Routes.Article);
       });
    };
    const transformStyle = {
@@ -62,16 +62,16 @@ export const CardSingle = () => {
          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15, paddingHorizontal: 20, alignItems: 'center' }}>
             <Text style={{ color: Colors.darkGrey }}>Feb 22, 2023</Text>
             <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-               <Image source={icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
+               <Image source={Icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
                <Text >1.3k</Text>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                <TouchableOpacity style={{ marginRight: 10 }}>
-                  <Image source={icons.ARROWUP} style={{ width: 20, height: 20, }} />
+                  <Image source={Icons.ARROWUP} style={{ width: 20, height: 20, }} />
                </TouchableOpacity>
                <Text style={{ marginRight: 10 }}>1.3k</Text>
                <TouchableOpacity>
-                  <Image source={icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
+                  <Image source={Icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
                </TouchableOpacity>
             </View>
          </View>

@@ -1,6 +1,6 @@
 import { StatusBarSpacer } from "@components/StatusBarSpacer";
 import Colors from "@constants/Colors";
-import { icons } from "@constants/Icons";
+import { Icons } from "@constants/Icons";
 import { Image, View, Text, TouchableOpacity, Dimensions, ScrollView, RefreshControl } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -24,7 +24,6 @@ export const ArticleScreen = () => {
       setIsRefreshing(true)
       navigation.goBack();
    }
-
 
    return (
       <View style={{ minHeight: '100%', backgroundColor: Colors.white }}>

@@ -1,4 +1,4 @@
-export const icons = {
+export const Icons = {
     SEARCH: require('@assets/icons/search.png'),
     NOTIFICATION: require('@assets/icons/bell.png'),
     COMMENT: require('@assets/icons/comment.png'),

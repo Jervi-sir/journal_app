@@ -1,6 +1,6 @@
 import { StatusBarSpacer } from "@components/StatusBarSpacer";
 import Colors from "@constants/Colors";
-import { icons } from "@constants/Icons";
+import { Icons } from "@constants/Icons";
 import { Image, View, Text, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,16 +39,16 @@ export const ArticleScreen = () => {
                   <Text style={{ color: Colors.darkGrey }}>Feb 22, 2023</Text>
                </View>
                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image source={icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
+                  <Image source={Icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
                   <Text >1.3k</Text>
                </TouchableOpacity>
                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <TouchableOpacity style={{ marginRight: 10 }}>
-                     <Image source={icons.ARROWUP} style={{ width: 20, height: 20, }} />
+                     <Image source={Icons.ARROWUP} style={{ width: 20, height: 20, }} />
                   </TouchableOpacity>
                   <Text style={{ marginRight: 10 }}>1.3k</Text>
                   <TouchableOpacity>
-                     <Image source={icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
+                     <Image source={Icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
                   </TouchableOpacity>
                </View>
             </View>

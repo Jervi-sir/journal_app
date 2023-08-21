@@ -11,8 +11,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HomeScreen } from './home/HomeScreen';
 import { ExploreScreen } from './explore/ExploreScreen';
 import { BookmarkScreen } from './bookmark/BookmarkScreen';
-import { WriteScreen } from './write/WriteScreen';
+import { SettingScreen } from './settings/SettingScreen';
 import Colors from '@constants/Colors';
+import { Routes } from '@constants/Routes';
+import { SettingsNaviation } from './settings/SettingsNavigation';
 
 const Tabs = AnimatedTabBarNavigator();
 
@@ -45,7 +47,7 @@ const TabMaterialIcons = (props: any) => {
 
 export default () => (
    <Tabs.Navigator
-      initialRouteName="Saved"
+      initialRouteName={Routes.M4}
       tabBarOptions={{
          activeTintColor: '#ffffff',
          inactiveTintColor: '#878787',
@@ -59,7 +61,7 @@ export default () => (
       }}
    >
       <Tabs.Screen
-         name="Home"
+         name={Routes.M1}
          component={HomeScreen}
          options={{
             label: 'Home',
@@ -71,7 +73,7 @@ export default () => (
          }}
       />
       <Tabs.Screen
-         name="Explore"
+         name={Routes.M2}
          component={ExploreScreen}
          options={{
             label: 'Explore',
@@ -83,7 +85,7 @@ export default () => (
          }}
       />
       <Tabs.Screen
-         name="Saved"
+         name={Routes.M3}
          component={BookmarkScreen}
          options={{
             label: 'Saved',
@@ -95,8 +97,8 @@ export default () => (
          }}
       />
       <Tabs.Screen
-         name="Profile"
-         component={WriteScreen}
+         name={Routes.M4}
+         component={SettingsNaviation}
          options={{
             label: 'Settings',
             tabBarIcon: ({ focused, color }) => (

@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity, FlatList, RefreshControl } from 'react-native'
 import { CarouselSlider } from '@components/CarouselSlider';
-import { icons } from '@constants/Icons';
+import { Icons } from '@constants/Icons';
 import { CardHorizental } from '@components/CardHorizental';
 import { StatusBarSpacer } from '@components/StatusBarSpacer';
 import { HeaderMenu } from '@components/HeaderMenu';
