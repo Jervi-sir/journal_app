@@ -20,7 +20,7 @@ export default function App() {
 			<StatusBarSpacer />
 			<NavigationContainer>
 				<Stack.Navigator
-					initialRouteName={Routes.Login}
+					initialRouteName={Routes.Register}
 					screenOptions={{
 						headerShown: false,
 						gestureDirection: 'vertical'
