@@ -10,6 +10,8 @@ import { StatusBarSpacer } from '@components/StatusBarSpacer';
 import { Routes } from '@constants/Routes';
 import { LoginScreen } from '@screens/auth/LoginScreen';
 import { RegisterScreen } from '@screens/auth/RegisterScreen';
+import { SpeechScreen } from '@screens/SpeechScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +22,7 @@ export default function App() {
 			<StatusBarSpacer />
 			<NavigationContainer>
 				<Stack.Navigator
-					initialRouteName={Routes.App}
+					//initialRouteName={Routes.App}
 					screenOptions={{
 						headerShown: false,
 						gestureDirection: 'vertical'

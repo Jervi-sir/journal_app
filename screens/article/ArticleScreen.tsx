@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { FlatList } from 'react-native';
 import LottieView from 'lottie-react-native';
 import arrowDownAnimation from '@assets/lottieFiles/arrowDown.json';
+import * as Speech from 'expo-speech';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -17,50 +18,60 @@ const { width } = Dimensions.get('window');
 export const ArticleScreen = () => {
    const navigation = useNavigation();
    const [hideHeader, setHideHeader] = useState(false);
-
    const [isRefreshing, setIsRefreshing] = useState(false);
 
+   const [articleText, setArticleText] = useState(`
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+      content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+   `);
+
    const onRefresh = () => {
-      setIsRefreshing(true)
+      setIsRefreshing(true);
+      Speech.stop();
       navigation.goBack();
    }
 
    return (
       <View style={{ minHeight: '100%', backgroundColor: Colors.white }}>
-         <ActionTools />
+         <ArticleAction articleText={ articleText }/>
          <FlatList
             data={[0]}
             progressViewOffset={10}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
-               <ArticleDetails />
+               <ArticleDetails articleText={articleText} />
             )}
             ListFooterComponent={() => (
                <View style={{ width: '100%', backgroundColor: Colors.white }}>
                   <Text style={{ textAlign: 'center' }}>Elwa3y</Text>
-                  <View style={{height: 123, }}>
+                  <View style={{ height: 123, }}>
                   </View>
                </View>
             )}
             ListHeaderComponent={() => (
                <View style={{ width, height: width, position: 'relative' }}>
-                  <View style={{ position: 'absolute', top: 15, left: 0, zIndex: 99, flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 20}}>
+                  <View style={{ position: 'absolute', top: 15, left: 0, zIndex: 99, flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 20 }}>
                      <TouchableOpacity
-                        style={{  backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5, transform: [{ rotate: '-90deg' }] }}
+                        style={{ backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5, transform: [{ rotate: '-90deg' }] }}
                         onPress={() => {
+                           Speech.stop();
                            navigation.goBack();
                         }}
                      >
                         <Image source={require('@assets/icons/backArrow.png')} style={{ width: 30, height: 30 }} />
                      </TouchableOpacity>
                      <TouchableOpacity
-                        style={{ backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5}}
-                        onPress={() => {}}
+                        style={{ backgroundColor: Colors.darkOverlayColor, borderRadius: 100, padding: 5 }}
+                        onPress={() => { }}
                      >
-                        <Icon name='share' size={ 30 } color={Colors.black} />
+                        <Icon name='share' size={30} color={Colors.black} />
                      </TouchableOpacity>
                   </View>
-                  
+
                   <Image source={require('@assets/previews/preview4.png')} style={{ width: '100%', height: '100%' }} />
                </View>
             )}
@@ -81,7 +92,7 @@ export const ArticleScreen = () => {
    );
 }
 
-const ArticleDetails = () => {
+const ArticleDetails = ({ articleText }) => {
    return (
       <View style={{ backgroundColor: Colors.white, flex: 1, marginTop: -25, padding: 20 }}>
          <View>
@@ -98,26 +109,36 @@ const ArticleDetails = () => {
          </View>
          <View style={{ flex: 1 }}>
             <Text>
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
-               content Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolore vitae! Aspernatur, doloremque ad voluptas at id iste quas facere commodi reprehenderit, odio labore molestiae. Officia quisquam fugit eum provident.
+               {articleText}
             </Text>
          </View>
       </View>
    );
 }
 
-const ActionTools = () => {
+const ArticleAction = ({ articleText }) => {
+   const [isReading, setIsReading] = useState(false);
+
+   const speak = () => {
+      if (!isReading) {
+         setIsReading(true);
+         const thingToSay = articleText;
+         const options = {
+            language: 'ar', // Set language to Arabic
+         };
+         Speech.speak(thingToSay, options);
+      } else {
+         setIsReading(false);
+         Speech.stop();
+      }
+   };
    return (
       <View style={{
          position: 'absolute', bottom: 50, width: '100%', zIndex: 99,
          justifyContent: 'center', alignItems: 'center',
       }}>
          <View style={{
-            flexDirection: 'row', justifyContent: 'space-between', 
+            flexDirection: 'row', justifyContent: 'space-between',
             paddingHorizontal: 20, paddingVertical: 10, width: '80%',
             backgroundColor: Colors.white,
             borderRadius: 100
@@ -131,14 +152,14 @@ const ActionTools = () => {
                <Icon name="comment" size={25} color={Colors.black} />
                <Text >1.3k</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-               <Icon name="headphones" size={25} color={Colors.black} />
+            <TouchableOpacity onPress={speak} style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <Icon name="headphones" size={25} color={isReading ? Colors.green : Colors.black} />
             </TouchableOpacity>
             <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
                <Icon name="bookmark-outline" size={25} color={Colors.black} />
             </TouchableOpacity>
          </View>
       </View>
-
-   );
+   )
 }
+
