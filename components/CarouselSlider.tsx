@@ -3,6 +3,9 @@ import { useState, useRef } from 'react';
 import { View, StyleSheet, Dimensions, Text, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '@constants/Routes';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 100
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
@@ -28,6 +31,7 @@ const data = [
 export const CarouselSlider = () => {
    const isCarousel = useRef(null)
    const [index, setIndex] = useState(0)
+   const navigation = useNavigation();
 
    return (
       <View style={{ alignItems: 'center', position: 'relative', paddingBottom: 10 }}>
@@ -36,7 +40,7 @@ export const CarouselSlider = () => {
             layoutCardOffset={1}
             ref={isCarousel}
             data={data}
-            renderItem={CarouselCardItem}
+            renderItem={({item, index}) => <CarouselCardItem index={index} navigation={navigation} item={item} />}
             sliderWidth={SLIDER_WIDTH}
             itemWidth={ITEM_WIDTH}
             inactiveSlideShift={5}
@@ -44,6 +48,7 @@ export const CarouselSlider = () => {
             useScrollView={true}
             loop
             autoplay={true}
+
          />
          <View style={{ position: 'absolute', bottom: -5 }}>
             <Pagination
@@ -71,30 +76,37 @@ export const CarouselSlider = () => {
    )
 }
 
-const CarouselCardItem = ({ item, index }) => {
+const CarouselCardItem = ({ item, index, navigation }) => {
    return (
-      <View style={[styles.container, { position: 'relative', borderRadius: 10, overflow: 'hidden' }]} key={index}>
-         <Image
-            source={{ uri: item.imgUrl }}
-            style={styles.image}
-         />
-         <LinearGradient
-            colors={['#3B3631', 'rgba(59, 54, 49, 0.00)']}
-            start={{ x: 0, y: 0.8 }}
-            end={{ x: 0, y: 0 }}
-            style={{
-               position: 'absolute',
-               bottom: 0,
-               width: '100%',
-               paddingHorizontal: 20,
-               paddingTop: 15,
-               paddingBottom: 20
-            }}
-         >
-            <Text style={[styles.header, { color: Colors.white }]}>{item.title}</Text>
-            <Text style={[styles.body, { color: Colors.white }]}>today</Text>
-         </LinearGradient>
-      </View>
+      <TouchableOpacity
+         activeOpacity={0.8}
+         onPress={() => {
+            navigation.navigate(Routes.Article);
+         }}
+      >
+         <View style={[styles.container, { position: 'relative', borderRadius: 10, overflow: 'hidden' }]} key={index}>
+            <Image
+               source={{ uri: item.imgUrl }}
+               style={styles.image}
+            />
+            <LinearGradient
+               colors={['#3B3631', 'rgba(59, 54, 49, 0.00)']}
+               start={{ x: 0, y: 0.8 }}
+               end={{ x: 0, y: 0 }}
+               style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  width: '100%',
+                  paddingHorizontal: 20,
+                  paddingTop: 15,
+                  paddingBottom: 20
+               }}
+            >
+               <Text style={[styles.header, { color: Colors.white }]}>{item.title}</Text>
+               <Text style={[styles.body, { color: Colors.white }]}>today</Text>
+            </LinearGradient>
+         </View>
+      </TouchableOpacity>
    )
 }
 

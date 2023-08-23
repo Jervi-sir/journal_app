@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Colors from "@constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { useRef } from 'react'
+import { Routes } from '@constants/Routes';
 
 const { width } = Dimensions.get('window');
 
@@ -43,7 +44,7 @@ export const CardSingle = () => {
          <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-               navigation.navigate('Article');
+               navigation.navigate(Routes.Article);
             }}
             style={{ width, height: width, position: 'relative', borderTopRightRadius: 20, borderTopLeftRadius: 20, overflow: 'hidden' }}
          >
