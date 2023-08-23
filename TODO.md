@@ -6,7 +6,8 @@ Project Description
 
 ### Todo
 
-- [ ] profile screen  
+- [ ] read outloud an article
+
 
 ### In Progress
 
@@ -18,4 +19,4 @@ Project Description
 - [x] show article  
 - [x] explore screen  
 - [x] saved screen  
-
+- [x] setting screen  

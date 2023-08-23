@@ -58,7 +58,7 @@ const TabMaterialIcons = (props: any) => {
 
 export default () => (
    <Tabs.Navigator
-      initialRouteName={Routes.M4}
+      initialRouteName={Routes.M1}
       tabBarOptions={{
          activeTintColor: '#ffffff',
          inactiveTintColor: '#878787',
