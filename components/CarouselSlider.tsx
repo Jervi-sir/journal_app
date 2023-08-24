@@ -10,28 +10,20 @@ import { Routes } from '@constants/Routes';
 export const SLIDER_WIDTH = Dimensions.get('window').width + 100
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
-const data = [
-   {
-      title: "Aenean leo",
-      body: "Ut tincidunt tincidunt erat. Sed cursus turpis vitae tortor. Quisque malesuada placerat nisl. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
-      imgUrl: "https://picsum.photos/id/11/200/300",
-   },
-   {
-      title: "In turpis",
-      body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
-      imgUrl: "https://picsum.photos/id/10/200/300",
-   },
-   {
-      title: "Lorem Ipsum",
-      body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
-      imgUrl: "https://picsum.photos/id/12/200/300",
-   },
-];
 
-export const CarouselSlider = () => {
+
+export const CarouselSlider = ({ item }) => {
    const isCarousel = useRef(null)
    const [index, setIndex] = useState(0)
    const navigation = useNavigation();
+
+   const data = item.map(i => ({
+      title: i.title,
+      body: i.recap, 
+      imgUrl: i.thumbnail,
+      uploaded_since: i.uploaded_since,
+      slug: i.slug,
+    }));
 
    return (
       <View style={{ alignItems: 'center', position: 'relative', paddingBottom: 10 }}>
@@ -77,12 +69,14 @@ export const CarouselSlider = () => {
 }
 
 const CarouselCardItem = ({ item, index, navigation }) => {
+   const goToArticle = (slug) => {
+      navigation.navigate(Routes.Article, { slug });
+   };
+
    return (
       <TouchableOpacity
          activeOpacity={0.8}
-         onPress={() => {
-            navigation.navigate(Routes.Article);
-         }}
+         onPress={() => goToArticle(item.slug)}
       >
          <View style={[styles.container, { position: 'relative', borderRadius: 10, overflow: 'hidden' }]} key={index}>
             <Image
@@ -102,8 +96,8 @@ const CarouselCardItem = ({ item, index, navigation }) => {
                   paddingBottom: 20
                }}
             >
-               <Text style={[styles.header, { color: Colors.white }]}>{item.title}</Text>
-               <Text style={[styles.body, { color: Colors.white }]}>today</Text>
+               <Text style={[styles.header, { color: Colors.white }]}>{ item.title }</Text>
+               <Text style={[styles.body, { color: Colors.white }]}>{ item.uploaded_since }</Text>
             </LinearGradient>
          </View>
       </TouchableOpacity>

@@ -12,6 +12,7 @@ module.exports = function (api) {
                   '@screens': "./screens",
                   '@constants': "./constants",
                   '@assets': "./assets",
+                  '@wrapper': "./wrapper",
                },
             },
          ],

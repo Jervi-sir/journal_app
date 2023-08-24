@@ -10,10 +10,10 @@ import { StatusBarSpacer } from '@components/StatusBarSpacer';
 import { Routes } from '@constants/Routes';
 import { LoginScreen } from '@screens/auth/LoginScreen';
 import { RegisterScreen } from '@screens/auth/RegisterScreen';
-import { SpeechScreen } from '@screens/SpeechScreen';
-
+import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator();
+const currentPlatform = Platform.OS;
 
 export default function App() {
 
@@ -22,10 +22,10 @@ export default function App() {
 			<StatusBarSpacer />
 			<NavigationContainer>
 				<Stack.Navigator
-					//initialRouteName={Routes.App}
+					initialRouteName={Routes.App}
 					screenOptions={{
 						headerShown: false,
-						gestureDirection: 'vertical'
+						gestureDirection: 'vertical',
 					}}
 				>
 					<Stack.Screen
@@ -39,10 +39,18 @@ export default function App() {
 					<Stack.Screen
 						name={Routes.Login}
 						component={LoginScreen}
+						options={{
+							presentation: currentPlatform == 'android' ? 'transparentModal' : 'modal',
+							gestureEnabled: false,
+						}} 
 					/>
 					<Stack.Screen
 						name={Routes.Register}
 						component={RegisterScreen}
+						options={{
+							presentation: currentPlatform == 'android' ? 'transparentModal' : 'modal',
+							gestureEnabled: false,
+						}} 
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>

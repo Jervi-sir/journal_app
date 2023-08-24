@@ -6,10 +6,21 @@ Project Description
 
 ### Todo
 
-- [ ] read outloud an article
+- [v] read outloud an article
 
 
 ### In Progress
+
+- [ ] login
+- [ ] register
+- [ ] logout
+- [ ] saved posts
+- [ ] make categories functional
+- [ ] save article
+- [ ] like article
+- [ ] comment on article
+- [ ] search articles
+- [ ] show notifications
 
 
 ### Done ✓

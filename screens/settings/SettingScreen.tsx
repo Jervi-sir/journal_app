@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, Image, View, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from '@react-navigation/native';
 import { Routes } from "@constants/Routes";
 import Colors from "@constants/Colors";
-
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { useAuth } from "@wrapper/AuthProvider";
+ 
 export const SettingScreen = () => {
+   const { isLoggedIn } = useAuth();
    const navigation = useNavigation();
+   const isFocused = useIsFocused();
+ 
+   useEffect(() => {
+     if (isFocused && !isLoggedIn) {
+       navigation.navigate(Routes.Login);
+     }
+   }, [isFocused, isLoggedIn]);
 
    return (
       <View style={{flex:1, justifyContent:'center'}}>

@@ -9,10 +9,14 @@ import { Routes } from '@constants/Routes';
 const { width } = Dimensions.get('window');
 
 
-export const CardSingle = () => {
+export const CardSingle = ({ item }) => {
    const navigation = useNavigation();
    const animatedValue = useRef(new Animated.Value(1)).current;
 
+   const goToArticle = (slug) => {
+      navigation.navigate(Routes.Article, { slug });
+   };
+   
    const handlePress = () => {
       Animated.timing(animatedValue, {
          toValue: 0,
@@ -43,34 +47,32 @@ export const CardSingle = () => {
       <>
          <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => {
-               navigation.navigate(Routes.Article);
-            }}
+            onPress={() => goToArticle(item.slug)}
             style={{ width, height: width, position: 'relative', borderTopRightRadius: 20, borderTopLeftRadius: 20, overflow: 'hidden' }}
          >
             <Animated.View style={[transformStyle]}>
-               <Image source={require('@assets/previews/preview4.png')} style={{ width: '100%', height: '100%' }} />
+               <Image source={{ uri: item.thumbnail }} style={{ marginRight: 10, width: '100%', height: '100%' , borderRadius: 10 }} />
                <LinearGradient
                   colors={['#3B3631', 'rgba(59, 54, 49, 0.00)']}
                   start={{ x: 0, y: 1 }}
                   end={{ x: 0, y: 0 }}
                   style={{ position: 'absolute', bottom: 0, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingVertical: 15, paddingHorizontal: 20, paddingBottom: 25 }}
                >
-                  <Text style={{ fontSize: 20, fontWeight: '800', color: Colors.white }}>Title</Text>
+                  <Text style={{ fontSize: 20, fontWeight: '800', color: Colors.white }}>{ item.title }</Text>
                </LinearGradient>
             </Animated.View>
          </TouchableOpacity>
          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15, paddingHorizontal: 20, alignItems: 'center' }}>
-            <Text style={{ color: Colors.darkGrey }}>Feb 22, 2023</Text>
+            <Text style={{ color: Colors.darkGrey }}>{ item.uploaded_since }</Text>
             <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
                <Image source={Icons.COMMENT} style={{ width: 20, height: 20, marginRight: 5 }} />
-               <Text >1.3k</Text>
+               <Text >{ item.nb_comments }</Text>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                <TouchableOpacity style={{ marginRight: 10 }}>
                   <Image source={Icons.ARROWUP} style={{ width: 20, height: 20, }} />
                </TouchableOpacity>
-               <Text style={{ marginRight: 10 }}>1.3k</Text>
+               <Text style={{ marginRight: 10 }}>{ item.likes }</Text>
                <TouchableOpacity>
                   <Image source={Icons.ARROWDOWN} style={{ width: 20, height: 20, }} />
                </TouchableOpacity>

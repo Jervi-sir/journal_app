@@ -6,8 +6,11 @@ import { Title } from 'react-native-paper';
 import { TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Routes } from '@constants/Routes';
+import { useNavigation } from '@react-navigation/native';
 
 export const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [text, setText] = useState('');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
@@ -81,8 +84,8 @@ export const RegisterScreen = () => {
                 <Text style={{ textAlign: 'center', color: Colors.white, fontSize: 18, fontWeight: '600' }}>Register</Text>
               </TouchableOpacity>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginVertical: 20, marginBottom: 30 }}>
-                <Text>Don't have an account? </Text>
-                <TouchableOpacity>
+                <Text>Already have an account? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.Login)}>
                   <Text style={{ color: Colors.black, fontWeight: '600', textDecorationLine: 'underline' }}>Sign Up</Text>
                 </TouchableOpacity>
               </View>

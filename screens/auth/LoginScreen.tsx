@@ -1,20 +1,36 @@
 import { useState } from 'react';
 import Colors from '@constants/Colors';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView } from 'react-native';
-import PasswordStrengthMeter from '@components/PasswordStrengthMeter ';
-import { Title } from 'react-native-paper';
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Alert } from 'react-native';
 import { TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '@constants/Routes';
+import axios from 'axios';
+import Api from '@constants/Api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storeToken } from '@functions/Auth';
 
 export const LoginScreen = () => {
+  const navigation = useNavigation();
   const [text, setText] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    // Call API to login
+    // You should validate email and password before sending a request
+    axios.post(Api.base + Api.login , {
+      phone: phone,
+      password: password
+    })
+    .then(response => {
+      const token = response.data.access_token;
+      storeToken(token);
+    })
+    .catch(error => {
+      Alert.alert('Error', 'Invalid email or password');
+    });
   };
 
   return (
@@ -22,7 +38,7 @@ export const LoginScreen = () => {
       extraScrollHeight={20}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1, backgroundColor: Colors.lightGrey, paddingHorizontal: 20, position: 'relative' }}>
+        <View style={{ flex: 1, backgroundColor: Colors.lightGrey, paddingHorizontal: 20, position: 'relative',  }}>
           <View style={{ marginTop: 40 }}>
             <Text style={{ fontSize: 39, fontWeight: '700' }}>Welcome!</Text>
             <Text style={{ fontSize: 15, fontWeight: '400', marginVertical: 5 }}>Login to your account to use the app at full capacity</Text>
@@ -71,7 +87,7 @@ export const LoginScreen = () => {
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginVertical: 20, marginBottom: 30 }}>
               <Text>Don't have an account? </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate(Routes.Register)}>
                 <Text style={{ color: Colors.black, fontWeight: '600', textDecorationLine: 'underline' }}>Sign Up</Text>
               </TouchableOpacity>
             </View>
