@@ -92,7 +92,7 @@ export const HomeScreen = () => {
                      <View style={{ paddingTop: 20 }}>
                         <CarouselSlider item={ slides }/>
                      </View>
-                     <Text style={{ fontSize: 25, fontWeight: '700' }}>Recommendation</Text>
+                     <Text style={{ fontSize: 25, fontWeight: '700', textAlign: 'right' }}>حصري</Text>
                   </>
                )}
                ListFooterComponent={() => loadingMore

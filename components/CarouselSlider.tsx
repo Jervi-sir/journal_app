@@ -93,11 +93,11 @@ const CarouselCardItem = ({ item, index, navigation }) => {
                   width: '100%',
                   paddingHorizontal: 20,
                   paddingTop: 15,
-                  paddingBottom: 20
+                  paddingBottom: 30
                }}
             >
-               <Text style={[styles.header, { color: Colors.white }]}>{ item.title }</Text>
-               <Text style={[styles.body, { color: Colors.white }]}>{ item.uploaded_since }</Text>
+               <Text style={{ fontSize: 28, fontWeight: "bold", color: Colors.white, textAlign: 'right' }}>{ item.title }</Text>
+               <Text style={{ fontSize: 15, fontWeight: "300", color: Colors.white, textAlign: 'right', }}>{ item.uploaded_since }</Text>
             </LinearGradient>
          </View>
       </TouchableOpacity>
@@ -122,13 +122,5 @@ const styles = StyleSheet.create({
       width: ITEM_WIDTH,
       height: 300,
    },
-   header: {
-      color: "#222",
-      fontSize: 28,
-      fontWeight: "bold",
-   },
-   body: {
-      color: "#222",
-      fontSize: 18,
-   }
+
 })

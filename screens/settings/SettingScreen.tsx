@@ -62,12 +62,14 @@ export const SettingScreen = () => {
                <Image source={require('@assets/profile.png')} />
                <Text style={{ fontWeight: '700', marginTop: 10 }}>Jervi Sir</Text>
             </View>
-            {!isLogged &&
-               <TouchableOpacity onPress={() => navigation.navigate(Routes.Login)}>
-                  <Text>Login</Text>
-               </TouchableOpacity>
-            }
+            
             <View>
+               {!isLogged &&
+                  <TouchableOpacity onPress={() => { navigation.navigate(Routes.Login) }}>
+                     <Text style={styles.tab}>Login</Text>
+                     <View style={styles.line}></View>
+                  </TouchableOpacity>
+               }
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.SettingList) }}>
                   <Text style={styles.tab}>Settings</Text>
                   <View style={styles.line}></View>

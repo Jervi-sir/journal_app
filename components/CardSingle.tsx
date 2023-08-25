@@ -58,7 +58,7 @@ export const CardSingle = ({ item }) => {
                   end={{ x: 0, y: 0 }}
                   style={{ position: 'absolute', bottom: 0, backgroundColor: Colors.darkOverlayColor, width: '100%', paddingVertical: 15, paddingHorizontal: 20, paddingBottom: 25 }}
                >
-                  <Text style={{ fontSize: 20, fontWeight: '800', color: Colors.white }}>{ item.title }</Text>
+                  <Text style={{ fontSize: 20, fontWeight: '800', color: Colors.white, textAlign: 'right' }}>{ item.title }</Text>
                </LinearGradient>
             </Animated.View>
          </TouchableOpacity>

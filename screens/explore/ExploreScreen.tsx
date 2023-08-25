@@ -2,30 +2,27 @@ import { HeaderMenu } from "@components/HeaderMenu";
 import { StatusBarSpacer } from "@components/StatusBarSpacer";
 import { Text, View, StyleSheet } from "react-native";
 
-import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Colors from "@constants/Colors";
 import { CategoryScreen } from "./CategoryScreen";
 
 const Tab = createMaterialTopTabNavigator();
 
-function HomeScreen() {
-	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Home!</Text>
-		</View>
-	);
-}
-
 export const ExploreScreen = () => {
+	const lastTab = tabCollection[tabCollection.length - 1];
+
 	return (
 		<>
 			<HeaderMenu />
 			<View style={{ flex: 1, paddingHorizontal: 0 }}>
 				<Tab.Navigator
+					initialRouteName={lastTab.name}
 					screenOptions={{
 						lazy: true,
 						tabBarScrollEnabled: true,
+						tabBarContentContainerStyle: {
+							//flexDirection: 'row-reverse',
+						},
 						tabBarStyle: {
 							backgroundColor: 'transparent',
 							elevation: 0,
@@ -35,6 +32,7 @@ export const ExploreScreen = () => {
 
 						tabBarIndicatorStyle: {
 							backgroundColor: Colors.greenMenu,
+							flexDirection: 'row-reverse',
 							borderRadius: 100, height: 4,
 						},
 						animationEnabled: true,
@@ -71,27 +69,19 @@ const styles = StyleSheet.create({
 
 const tabCollection = [
 	{
-		name: 'General',
-		category: 'general',
-	},
-	{
-		name: 'General2',
-		category: 'general2',
-	},
-	{
-		name: 'General3',
-		category: 'general3',
-	},
-	{
-		name: 'General4',
-		category: 'general4',
-	},
-	{
-		name: 'General5',
-		category: 'general5',
-	},
-	{
-		name: 'General6',
-		category: 'general6',
+		name: 'مجتمع',
+		category: 'Community',
+	},{
+		name: 'ثقافة',
+		category: 'Culture',
+	},{
+		name: 'اقتصاد',
+		category: 'Economy',
+	},{
+		name: 'سياسة',
+		category: 'Politics',
+	},{
+		name: 'عاجل',
+		category: 'Urgent',
 	},
 ];

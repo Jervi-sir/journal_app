@@ -13,6 +13,10 @@ import { RegisterScreen } from '@screens/auth/RegisterScreen';
 import { Platform } from 'react-native';
 import { initializeDB } from '@functions/SQLiteUtility';
 
+import { I18nManager } from 'react-native';
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
+
 const Stack = createNativeStackNavigator();
 const currentPlatform = Platform.OS;
 

@@ -15,9 +15,11 @@ export const HeaderMenu = () => {
                <TouchableOpacity style={{ backgroundColor: Colors.lightGrey, borderRadius: 100, padding: 7, marginRight: 15 }}>
                   <Image source={Icons.SEARCH} style={{ width: 20, height: 20 }} />
                </TouchableOpacity>
+               {/* 
                <TouchableOpacity style={{ backgroundColor: Colors.lightGrey, borderRadius: 100, padding: 7 }}>
                   <Image source={Icons.NOTIFICATION} style={{ width: 20, height: 20 }} />
                </TouchableOpacity>
+               */}
             </View>
          </View>
       </View>
