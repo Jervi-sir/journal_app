@@ -6,13 +6,11 @@ import { AboutScreen } from './AboutScreen';
 import { TermScreen } from './TermScreen';
 import { SettingList } from './SettingList';
 import { Routes } from '@constants/Routes';
-import { AuthProvider } from '@wrapper/AuthProvider';
 
 const Stack = createStackNavigator();
 
 export const SettingsNaviation = () => {
   return (
-    <AuthProvider>
       <Stack.Navigator
         initialRouteName={Routes.M4List}
         screenOptions={{
@@ -28,6 +26,5 @@ export const SettingsNaviation = () => {
         <Stack.Screen name={Routes.About} component={AboutScreen} />
         <Stack.Screen name={Routes.Terms} component={TermScreen} />
       </Stack.Navigator>
-    </AuthProvider>
   )
 }

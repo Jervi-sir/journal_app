@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Colors from '@constants/Colors';
-import { StyleSheet, Text, TextInput, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, TextInput, View, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import PasswordStrengthMeter from '@components/PasswordStrengthMeter ';
-import { Title } from 'react-native-paper';
 import { TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Routes } from '@constants/Routes';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import Api from '@constants/Api';
+import { storeToken } from '@functions/Auth';
+import { Platform } from 'react-native';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -17,8 +20,32 @@ export const RegisterScreen = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+
+  const deviceType = Platform.OS + " v" + Platform.Version; //to know feed statistics about most used devices type ['privacy is concerned']
+
+  const handleStoreToken = async (apiToken) => {
+    await storeToken(apiToken);
+  };
+
   const handleRegister = () => {
     // Call API to Register
+    axios.post(Api.base + Api.register , {
+      name: fullName,
+      phone_number: phone,
+      password: password,
+      deviceType: deviceType,   //to know feed statistics about most used devices type ['privacy is concerned']
+    })
+    .then(response => {
+      const token = response.data.access_token;
+      handleStoreToken(token);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: Routes.App }],
+      });
+    })
+    .catch(error => {
+      Alert.alert('Error', error.message);
+    });
   };
 
   return (
@@ -75,8 +102,6 @@ export const RegisterScreen = () => {
               <View style={{paddingVertical: 10, paddingHorizontal: 20}}>
               <PasswordStrengthMeter password={password} />
               </View>
-
-
             </View>
 
             <View style={{ flex: 1, paddingBottom: 50, paddingTop: 40 }}>

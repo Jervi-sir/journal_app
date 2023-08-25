@@ -11,12 +11,10 @@ Project Description
 
 ### In Progress
 
-- [ ] login
-- [ ] register
-- [ ] logout
-- [ ] saved posts
+
+- [ ] show posts
 - [ ] make categories functional
-- [ ] save article
+- [ ] saved article
 - [ ] like article
 - [ ] comment on article
 - [ ] search articles
@@ -31,3 +29,17 @@ Project Description
 - [x] explore screen  
 - [x] saved screen  
 - [x] setting screen  
+- [x] login
+- [x] register
+- [x] logout
+- [x] delete table of bookmarks
+- [x] countBookmarkedArticles
+- [x] bookmarkArticle
+- [x] getAllBookmarkedArticles
+- [x] doesArticleExist
+- [x] showTableStructure
+- [x] removeBookmarkedArticle
+- [x] 
+- [x] 
+- [x] 
+- [x] 

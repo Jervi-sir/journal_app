@@ -18,15 +18,24 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const handleStoreToken = async (apiToken) => {
+    await storeToken(apiToken);
+  };
+
   const handleLogin = () => {
     // You should validate email and password before sending a request
     axios.post(Api.base + Api.login , {
-      phone: phone,
+      phone_number: phone,
       password: password
     })
     .then(response => {
+      console.log(response.data);
       const token = response.data.access_token;
-      storeToken(token);
+      handleStoreToken(token);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: Routes.App }],
+      });
     })
     .catch(error => {
       Alert.alert('Error', 'Invalid email or password');
