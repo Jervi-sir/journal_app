@@ -33,26 +33,6 @@ export const deleteTable = () => {
 };
 
 
-/*----------------------------------------------------------------
-  countBookmarkedArticles((total) => {
-    console.log(`Total number of bookmarked articles: ${total}`);
-  });
-----------------------------------------------------------------*/
-export const countBookmarkedArticles = (callback) => {
-  db.transaction(tx => {
-    tx.executeSql(
-      'SELECT COUNT(*) as total FROM bookmarked_articles;',
-      [],
-      (_, { rows: { _array } }) => {
-        const total = _array[0].total;
-        callback(total);
-      },
-      (_, error) => {
-        console.log('SQL Error: ' + error);
-      }
-    );
-  });
-};
 
 
 /*----------------------------------------------------------------
@@ -201,6 +181,69 @@ export const removeBookmarkedArticle = (articleId, callback) => {
         } else {
           callback(false); // No article found to remove
         }
+      },
+      (_, error) => {
+        console.log('SQL Error: ' + error);
+      }
+    );
+  });
+};
+
+
+/*----------------------------------------------------------------
+  fetchBookmarkedArticles((articles) => {
+    setData(articles);
+  });
+----------------------------------------------------------------*/
+export const fetchBookmarkedArticles = (offset, limit, callback) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      'SELECT * FROM bookmarked_articles LIMIT ? OFFSET ?',
+      [limit, offset],
+      (_, { rows: { _array } }) => {
+        callback(_array);
+      },
+      (_, error) => {
+        console.log('SQL Error: ' + error);
+      }
+    );
+  });
+};
+
+/*----------------------------------------------------------------
+  countBookmarkedArticles((count) => {
+    setArticleCount(count);
+  });
+----------------------------------------------------------------*/
+export const countBookmarkedArticles = (callback) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      'SELECT COUNT(*) as count FROM bookmarked_articles',
+      [],
+      (_, { rows: { _array } }) => {
+        callback(_array[0].count);
+      },
+      (_, error) => {
+        console.log('SQL Error: ' + error);
+      }
+    );
+  });
+};
+
+
+/*----------------------------------------------------------------
+  deleteAllBookmarkedArticles(() => {
+    setData([]); // Clear the current UI
+    setArticleCount(0); // Reset the article count
+  });
+----------------------------------------------------------------*/
+export const deleteAllBookmarkedArticles = (callback) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      'DELETE FROM bookmarked_articles',
+      [],
+      () => {
+        callback();
       },
       (_, error) => {
         console.log('SQL Error: ' + error);
