@@ -12,6 +12,7 @@ import { LoginScreen } from '@screens/auth/LoginScreen';
 import { RegisterScreen } from '@screens/auth/RegisterScreen';
 import { Platform } from 'react-native';
 import { initializeDB } from '@functions/SQLiteUtility';
+import { DarkTheme } from '@react-navigation/native';
 
 import { I18nManager } from 'react-native';
 I18nManager.forceRTL(false);
@@ -29,7 +30,7 @@ export default function App() {
 	return (
 		<SafeAreaProvider>
 			<StatusBarSpacer />
-				<NavigationContainer>
+				<NavigationContainer >
 					<Stack.Navigator
 						initialRouteName={Routes.App}
 						screenOptions={{

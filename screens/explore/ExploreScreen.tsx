@@ -33,7 +33,9 @@ export const ExploreScreen = () => {
 						tabBarIndicatorStyle: {
 							backgroundColor: Colors.greenMenu,
 							flexDirection: 'row-reverse',
-							borderRadius: 100, height: 4,
+							height: 4, maxWidth: '60%',
+							marginHorizontal: '2.5%',
+							borderTopEndRadius: 100, borderTopStartRadius: 100,
 						},
 						animationEnabled: true,
 						swipeEnabled: true,
@@ -62,7 +64,7 @@ export const ExploreScreen = () => {
 
 const styles = StyleSheet.create({
 	tabBarItemStyle: {
-		backgroundColor: '#DDD', borderRadius: 20, padding: 5, margin: 5
+		backgroundColor: '#DDD', borderTopEndRadius: 20, borderTopStartRadius: 20, padding: 5, margin: 5
 	}
 })
 

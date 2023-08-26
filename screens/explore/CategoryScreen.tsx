@@ -23,31 +23,15 @@ export const CategoryScreen = ({ route }) => {
    const [loading, setLoading] = useState(true);
    const [loadingMore, setLoadingMore] = useState(false);
 
-   const fetchData = async () => {
-      // Replace this with your data fetching logic
-      return new Promise((resolve) => {
-         setTimeout(() => {
-            resolve([
-               { id: '1', name: 'Item 1' },
-               { id: '2', name: 'Item 2' },
-            ]);
-         }, 2000);
-      });
-   };
-
    const fetchArticles = async (page = 1) => {
       if (page === 1) setLoading(true);
       else setLoadingMore(true);
 
       try {
-         // Replace this URL with your actual API URL
-         const apiUrl = Api.base + Api.home + '?page=' + page;
-
+         const apiUrl = Api.base + Api.category + category + '?page=' + page;
          const response = await axios.get(apiUrl);
          const data = response.data;
-         
-         setSlides(data.slideArticles);
-
+         console.log(data);
          if (page === 1) {
             setArticles(data.recommendedArticles);
          } else {

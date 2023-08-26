@@ -11,10 +11,7 @@ Project Description
 
 ### In Progress
 
-
-- [ ] show posts
 - [ ] make categories functional
-- [ ] saved article
 - [ ] like article
 - [ ] comment on article
 - [ ] search articles
@@ -39,6 +36,8 @@ Project Description
 - [x] doesArticleExist
 - [x] showTableStructure
 - [x] removeBookmarkedArticle
+- [x] show posts
+- [x] saved article
 - [x] 
 - [x] 
 - [x] 

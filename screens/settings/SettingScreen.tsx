@@ -6,12 +6,20 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { getToken, removeToken, storeToken } from "@functions/Auth";
 import axios from "axios";
 import Api from "@constants/Api";
+import { Switch } from 'react-native';
+import { Vibration } from 'react-native';
+import * as Haptics from 'expo-haptics';
 
 export const SettingScreen = () => {
    const navigation = useNavigation();
    const isFocused = useIsFocused();
    const [isLogged, setIsLogged] = useState(false);
    const [token, setToken] = useState(null);
+   const [isEnabled, setIsEnabled] = useState(false);
+
+   const toggleSwitch = () => {
+      setIsEnabled(!isEnabled);
+   }
 
    const checkToken = async () => {
       const apiToken = await getToken();
@@ -43,8 +51,6 @@ export const SettingScreen = () => {
       .catch(error => {
          console.error('Failed to log out', error);
       });
-
-
       
    };
 
@@ -66,24 +72,43 @@ export const SettingScreen = () => {
             <View>
                {!isLogged &&
                   <TouchableOpacity onPress={() => { navigation.navigate(Routes.Login) }}>
-                     <Text style={styles.tab}>Login</Text>
+                     <Text style={styles.tab}>تسجيل الدخول</Text>
                      <View style={styles.line}></View>
                   </TouchableOpacity>
                }
+               
+               
+               <TouchableOpacity 
+                  onPress={() => {
+                     toggleSwitch();
+                     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+                  }}
+               >
+                  <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 20, alignItems: 'center'}}>
+                     <Switch
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}  
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                     />
+                     <Text style={styles.tab}>خلفية مظلمة</Text>
+                  </View>
+                  <View style={styles.line}></View>
+               </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.SettingList) }}>
-                  <Text style={styles.tab}>Settings</Text>
+                  <Text style={styles.tab}>إعدادات</Text>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.Notifications) }}>
-                  <Text style={styles.tab}>Notifications</Text>
+                  <Text style={styles.tab}>إشعارات</Text>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.About) }}>
-                  <Text style={styles.tab}>About</Text>
+                  <Text style={styles.tab}>معلومات عنا</Text>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.Terms) }}>
-                  <Text style={styles.tab}>Terms of Usage</Text>
+                  <Text style={styles.tab}>شروط الاستخدام</Text>
                   {isLogged && (
                      <View style={styles.line}></View>
                   )}
@@ -108,6 +133,7 @@ const styles = StyleSheet.create({
       margin: 20,
       marginVertical: 0,
       borderRadius: 10,
+      textAlign: 'right'
    },
    line: {
       height: 2,
