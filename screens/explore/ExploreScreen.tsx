@@ -5,11 +5,27 @@ import { Text, View, StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Colors from "@constants/Colors";
 import { CategoryScreen } from "./CategoryScreen";
+import { Animated } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 
 const Tab = createMaterialTopTabNavigator();
 
 export const ExploreScreen = () => {
 	const lastTab = tabCollection[tabCollection.length - 1];
+
+	const tabOffset = useRef(new Animated.Value(0)).current;
+
+	useEffect(() => {
+    const id = tabOffset.addListener(({ value }) => {
+      console.log("Animated value: ", value);
+    });
+
+    // Cleanup listener on unmount
+    return () => {
+      tabOffset.removeListener(id);
+    };
+  }, [tabOffset]);
+
 
 	return (
 		<>
@@ -48,6 +64,13 @@ export const ExploreScreen = () => {
 							name={tab.name}
 							component={CategoryScreen} // reuse same component
 							initialParams={{ category: tab.category }}
+							listeners={{
+								tabPress: (e) => {
+									// Prevent default behavior
+									//e.preventDefault();
+									// Animate tabOffset value here if needed
+								},
+							}}
 							options={{
 								tabBarActiveTintColor: Colors.greenMenu,
 								tabBarInactiveTintColor: Colors.darkGrey

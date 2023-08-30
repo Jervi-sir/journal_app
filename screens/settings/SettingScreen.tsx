@@ -10,6 +10,8 @@ import { Switch } from 'react-native';
 import { Vibration } from 'react-native';
 import * as Haptics from 'expo-haptics';
 
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 export const SettingScreen = () => {
    const navigation = useNavigation();
    const isFocused = useIsFocused();
@@ -62,8 +64,9 @@ export const SettingScreen = () => {
    }, [isFocused]);
 
    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-         <View style={{ marginTop: -169 }}>
+      <View >
+         <View style={{position: 'absolute', top: 0, backgroundColor: Colors.green, width: '100%', height: '30%',}}></View>
+         <View style={{ backgroundColor: Colors.white, borderRadius: 20, marginTop: 100, marginHorizontal: 20, paddingVertical: 20}}>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 30 }}>
                <Image source={require('@assets/profile.png')} />
                <Text style={{ fontWeight: '700', marginTop: 10 }}>Jervi Sir</Text>
@@ -72,12 +75,13 @@ export const SettingScreen = () => {
             <View>
                {!isLogged &&
                   <TouchableOpacity onPress={() => { navigation.navigate(Routes.Login) }}>
-                     <Text style={styles.tab}>تسجيل الدخول</Text>
+                     <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between', paddingRight: 20, alignItems: 'center'}}>
+                        <Text style={styles.tab}>تسجيل الدخول</Text>
+                        <MaterialIcons name="arrow-back-ios" size={20} color={Colors.gray} />
+                     </View>
                      <View style={styles.line}></View>
                   </TouchableOpacity>
                }
-               
-               
                <TouchableOpacity 
                   onPress={() => {
                      toggleSwitch();
@@ -86,8 +90,8 @@ export const SettingScreen = () => {
                >
                   <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 20, alignItems: 'center'}}>
                      <Switch
-                        trackColor={{ false: "#767577", true: "#81b0ff" }}
-                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}  
+                        trackColor={{ false: "#767577", true: Colors.green }}
+                        thumbColor={isEnabled ? Colors.lightOverlayColor : "#f4f3f4"}  
                         onValueChange={toggleSwitch}
                         value={isEnabled}
                      />
@@ -96,19 +100,31 @@ export const SettingScreen = () => {
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.SettingList) }}>
-                  <Text style={styles.tab}>إعدادات</Text>
+                  <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between', paddingRight: 20, alignItems: 'center'}}>
+                     <Text style={styles.tab}>إعدادات</Text>
+                     <MaterialIcons name="arrow-back-ios" size={20} color={Colors.gray} />
+                  </View>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.Notifications) }}>
-                  <Text style={styles.tab}>إشعارات</Text>
+                  <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between', paddingRight: 20, alignItems: 'center'}}>
+                     <Text style={styles.tab}>إشعارات</Text>
+                     <MaterialIcons name="arrow-back-ios" size={20} color={Colors.gray} />
+                  </View>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.About) }}>
-                  <Text style={styles.tab}>معلومات عنا</Text>
+                  <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between', paddingRight: 20, alignItems: 'center'}}>
+                     <Text style={styles.tab}>معلومات عنا</Text>
+                     <MaterialIcons name="arrow-back-ios" size={20} color={Colors.gray} />
+                  </View>
                   <View style={styles.line}></View>
                </TouchableOpacity>
                <TouchableOpacity onPress={() => { navigation.navigate(Routes.Terms) }}>
-                  <Text style={styles.tab}>شروط الاستخدام</Text>
+                  <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between', paddingRight: 20, alignItems: 'center'}}>
+                     <Text style={styles.tab}>شروط الاستخدام</Text>
+                     <MaterialIcons name="arrow-back-ios" size={20} color={Colors.gray} />
+                  </View>
                   {isLogged && (
                      <View style={styles.line}></View>
                   )}
